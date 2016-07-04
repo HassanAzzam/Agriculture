@@ -1,0 +1,40 @@
+<!DOCTYPE>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Agriculture</title>
+</head>
+<body>
+	<section>
+		<object id="map" data="eg-all.svg"></object>
+		<h1 id="content"></h1>
+	</section>
+	<script type="text/javascript">
+		window.onload = function(){
+			var svg = document.getElementById('map').contentDocument.querySelector('svg');
+			svg.style.transform="scale(0.8)";
+				var states = svg.querySelectorAll('*[id^="EG."]');
+				var _hover = function(e){
+					e.target.style.fill = 'rgba(0, 115, 231, 0.32)';
+					document.getElementById('content').innerHTML = e.target.id;
+				}
+				var _unhover = function(e){
+					e.target.style.fill = '#fff';
+					document.getElementById('content').innerHTML = "";
+				}
+				for(var i=0;i<states.length;i++) {
+					states[i].addEventListener("mouseover",_hover,false);
+					states[i].addEventListener("mouseout",_unhover,false);
+				}
+		}
+	</script>
+	<style type="text/css">	
+		h1{
+			float: right;
+			width:auto;
+			margin-right: 50px;
+			font-size: 2em;
+		}
+	</style>
+</body>
+</html>
